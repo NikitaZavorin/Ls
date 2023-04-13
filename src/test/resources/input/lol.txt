@@ -1,0 +1,5 @@
+file size : 7 bytes.
+file is writable
+file is readable
+file path: C:\Users\zavor\IdeaProjects\TT\lol2.txt
+file name: lol2.txt

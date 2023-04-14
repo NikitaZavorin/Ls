@@ -1,5 +1,14 @@
-file size : 7 bytes.
-file is writable
-file is readable
-file path: C:\Users\zavor\IdeaProjects\TT\lol2.txt
-file name: lol2.txt
+What is the difference between a primitive type and a reference type? Examples (from standard types/standard library).
+There are 8 primitive data types in total. byte, short, long, int, double, float, char, boolean.
+The main differences:
+
+The value of a primitive variable is stored directly on the stack.
+A reference type has a reference stored in the stack (the number of the cell in memory) where the value is stored, and the value of the variable itself is stored in the heap.
+Reference types have methods.
+A primitive type always has a value, a reference type can be null.
+Reference types are written with a capital letter.
+The size of the primitive depends on the data type (int - 4 bytes)
+
+void is a primitive indication of the absence of a type.
+
+For primitive types, there are wrapper reference types. This one is needed for collections, for example, since they contain only reference types.

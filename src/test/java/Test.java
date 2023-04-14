@@ -1,9 +1,11 @@
 import javax.imageio.IIOException;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.SimpleTimeZone;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -22,60 +24,100 @@ public class Test {
         return false;
     }
 
+
     @org.junit.jupiter.api.Test
     void test1() throws IOException {
-        String[] command = "-l -h -r -o test1Actual.txt .\\input".split(" ");
+        String[] command = "-l -h -r -o .\\src\\test\\resources\\output\\Empty.txt .\\src\\test\\resources\\input".split(" ");
 
         LsCommands.main(command);
+        FileInputStream file = new FileInputStream(".\\src\\test\\resources\\output\\Empty.txt");
+        int c = file.read();
+        String ans = "";
+        while (c != -1) {
+            ans += (char) c;
+            c = file.read();
+        }
 
-        File file1 = new File(".\\src\\test\\resources\\testActual\\test1Actual.txt");
-        File file2 = new File(".\\src\\test\\resources\\testExpected\\test1Expected.txt");
-
-        assertTrue(isEquals(file1.toPath(), file2.toPath()));
+        assertEquals("0.8916015625 KB\n" +
+                "13/04/2023 21:57:44\n" +
+                "lol.txt\n" +
+                "0.0029296875 KB\n" +
+                "13/04/2023 21:57:50\n" +
+                "lol2.txt\n", ans);
     }
 
     @org.junit.jupiter.api.Test
     void testLong() throws IOException {
-        String[] command = "-l   .\\\\src\\\\test\\\\resources\\\\Output".split(" ");
+        String[] command = "-l -o .\\src\\test\\resources\\output\\Empty.txt .\\src\\test\\resources\\input".split(" ");
         LsCommands.main(command);
-
-        File file1 = new File(".\\src\\test\\resources\\testActual\\test2Actual.txt");
-        File file2 = new File(".\\src\\test\\resources\\testExpected\\test2Expected.txt");
-
-        assertTrue(isEquals(file1.toPath(), file2.toPath()));
+        FileInputStream file = new FileInputStream(".\\src\\test\\resources\\output\\Empty.txt");
+        int c = file.read();
+        String ans = "";
+        while (c != -1) {
+            ans += (char) c;
+            c = file.read();
+        }
+        assertEquals("lol.txt\n" +
+                "1681412264903 \n" +
+                "913 Bytes\n" +
+                "lol2.txt\n" +
+                "1681412270165 \n" +
+                "3 Bytes\n", ans);
     }
 
     @org.junit.jupiter.api.Test
     void testLong_Human() throws IOException {
-        String[] command = "-l   .\\\\src\\\\test\\\\resources\\\\Output".split(" ");
+        String[] command = "-l -h -o .\\src\\test\\resources\\output\\Empty.txt .\\src\\test\\resources\\input".split(" ");
         LsCommands.main(command);
-
-        File file1 = new File(".\\src\\test\\resources\\testActual\\test3Actual.txt");
-        File file2 = new File(".\\src\\test\\resources\\testExpected\\test3Expected.txt");
-
-        assertTrue(isEquals(file1.toPath(), file2.toPath()));
+        FileInputStream file = new FileInputStream(".\\src\\test\\resources\\output\\Empty.txt");
+        int c = file.read();
+        String ans = "";
+        while (c != -1) {
+            ans += (char) c;
+            c = file.read();
+        }
+        assertEquals("lol.txt\n" +
+                "13/04/2023 21:57:44\n" +
+                "0.8916015625 KB\n" +
+                "lol2.txt\n" +
+                "13/04/2023 21:57:50\n" +
+                "0.0029296875 KB\n",ans);
     }
 
     @org.junit.jupiter.api.Test
     void testLHuman() throws IOException {
-        String[] command = "-l   .\\\\src\\\\test\\\\resources\\\\Output".split(" ");
+        String[] command = "-h -o .\\src\\test\\resources\\output\\Empty.txt .\\src\\test\\resources\\input".split(" ");
         LsCommands.main(command);
+        FileInputStream file = new FileInputStream(".\\src\\test\\resources\\output\\Empty.txt");
+        int c = file.read();
+        String ans = "";
+        while (c != -1) {
+            ans += (char) c;
+            c = file.read();
+        }
+        assertEquals("lol.txt\n" +
+                "lol2.txt\n",ans);
 
-        File file1 = new File(".\\src\\test\\resources\\testActual\\test4Actual.txt");
-        File file2 = new File(".\\src\\test\\resources\\testExpected\\test4Expected.txt");
 
-        assertTrue(isEquals(file1.toPath(), file2.toPath()));
     }
 
     @org.junit.jupiter.api.Test
     void testLHuman_Revers() throws IOException {
-        String[] command = "-l   .\\\\src\\\\test\\\\resources\\\\Output".split(" ");
+        String[] command = "-l -r -o .\\src\\test\\resources\\output\\Empty.txt .\\src\\test\\resources\\input".split(" ");
         LsCommands.main(command);
-
-        File file1 = new File(".\\src\\test\\resources\\testActual\\test5Actual.txt");
-        File file2 = new File(".\\src\\test\\resources\\testExpected\\test5Expected.txt");
-
-        assertTrue(isEquals(file1.toPath(), file2.toPath()));
+        FileInputStream file = new FileInputStream(".\\src\\test\\resources\\output\\Empty.txt");
+        int c = file.read();
+        String ans = "";
+        while (c != -1) {
+            ans += (char) c;
+            c = file.read();
+        }
+        assertEquals("913 Bytes\n" +
+                "1681412264903 \n" +
+                "lol.txt\n" +
+                "3 Bytes\n" +
+                "1681412270165 \n" +
+                "lol2.txt\n",ans);
     }
 
 }

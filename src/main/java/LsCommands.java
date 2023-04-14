@@ -18,7 +18,7 @@ public class LsCommands {
     @Option(name = "-o")
     String outputFile = "";
 
-    @Argument(metaVar = "InPath")
+    @Argument
     String inputFile;
 
 

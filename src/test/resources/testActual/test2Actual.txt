@@ -1,2 +1,6 @@
-lol2.txt 111 1680718290610 913 Bytes
-output.txt 111 1680850168701 3 Bytes
+lol.txt
+1681412264903
+913 Bytes
+lol2.txt
+1681412270165
+3 Bytes

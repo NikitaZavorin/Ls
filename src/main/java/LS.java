@@ -1,5 +1,3 @@
-import org.jetbrains.annotations.NotNull;
-
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,91 +21,101 @@ public class LS {
     }
 
 
-    void OutputInfo(String inputFile, String outputFile) throws IOException {
+    void outputInfo(String inputFile, String outputFile) throws IOException {
         if (inputFile == null) {
-            System.err.println("Input error.");
-        } else {
-            File file = new File(inputFile);
-            if (!file.exists()) {
-                System.err.println("Input error.");
+            throw new IllegalArgumentException("Input error.");
+        }
+        File file = new File(inputFile);
+        if (!file.exists()) {
+            throw new IllegalArgumentException("Input error.");
+        }
+        StringBuilder build = new StringBuilder();
+        //ArrayList<String> list = new ArrayList<String>();
+        if (file.isDirectory()) {
+            if (!longFormat) build = Info(inputFile);
+            if (longFormat) build = DirectionInfo(inputFile);
+        }
+        if (file.isFile()) build = fileList(inputFile);
+        if (outputFile.equals("")) {
+            if (!reverse || longFormat || file.isFile()) {
+                System.out.println(build);
+                /*for (String line : list) {
+                    System.out.println(line);
+                }*/
             } else {
-                ArrayList<String> list = new ArrayList<String>();
-                if (file.isDirectory()) {
-                    if (!longFormat) list = Info(inputFile);
-                    if (longFormat) list = DirectionInfo(inputFile);
-                }
-                if (file.isFile()) list = fileList(inputFile);
-                if (outputFile.equals("")) {
-                    if (!reverse || longFormat || file.isFile()) {
-                        for (String line : list) {
-                            System.out.println(line);
-                        }
-                    } else {
-                        Collections.reverse(list);
-                        for (String line : list) {
-                            System.out.println(line);
-                        }
-                    }
-                } else {
-                    write(list, outputFile);
-                }
+                Collections.reverse(Collections.singletonList(build));
+                System.out.println(build);
+                /*for (String line : list) {
+                    System.out.println(line);
+                }*/
             }
+        } else {
+            write(build, outputFile);
         }
     }
 
 
-    private ArrayList<String> Info(String inputFile) {
+    private StringBuilder Info(String inputFile) {
         File file = new File(inputFile);
         File[] listOfFiles = file.listFiles();
-        String[] list = new String[listOfFiles.length];
+        //String[] list = new String[listOfFiles.length];
+        StringBuilder[] build = new StringBuilder[listOfFiles.length];
         if (listOfFiles.length == 0) {
-            System.out.println("Directory is empty");
+            throw new IllegalArgumentException("Directory is empty");
+            //System.out.println("Directory is empty");
         } else {
             for (int i = 0; i < listOfFiles.length; i++) {
-                list[i] = listOfFiles[i].getName();
+                build[i] = new StringBuilder(listOfFiles[i].getName());
             }
-            Arrays.sort(list);
-            return new ArrayList<String>(Arrays.asList(list));
+            Arrays.stream(build).sorted();
+            //Arrays.sort(list);
+            return new StringBuilder(String.valueOf(Arrays.asList(build)));
+            //return new ArrayList<>(Arrays.asList(list));
         }
-        return new ArrayList<String>(Arrays.asList(list));
+        //return new ArrayList<>(Arrays.asList(list));
     }
 
 
-    @NotNull
-    ArrayList<String> DirectionInfo(String inputFile) {
-        ArrayList<String> Info = new ArrayList<>();
+    StringBuilder DirectionInfo(String inputFile) {
         File file = new File(inputFile);
         File[] listOfFiles = file.listFiles();
-        ArrayList<String> list = new ArrayList<String>();
-        if (listOfFiles.length == 0) System.out.println("Directory is empty");
+        //Replace to stringbuilder
+        StringBuilder build = new StringBuilder();
+        //ArrayList<String> list = new ArrayList<>();
+        if (listOfFiles.length == 0) throw new IllegalArgumentException("Directory is empty");
+        //System.out.println("Directory is empty");
         if (reverse) {
             for (int i = listOfFiles.length - 1; i >= 0; i--) {
-                if (humanReadable == false) {
-                    list.add(listOfFiles[i].getName());
-                    list.add(listOfFiles[i].lastModified() + " ");
-                    list.add(listOfFiles[i].length() + " Bytes");
+                if (!humanReadable) {
+                    build.append(listOfFiles[i].getName());
+                    build.append(listOfFiles[i].lastModified()).append(" ");
+                    build.append(listOfFiles[i].length()).append(" Bytes");
+                    build.append(" ");
                 } else {
-                    list.add(listOfFiles[i].getName());
-                    list.add(getTime(listOfFiles[i]));
-                    list.add(fromBytes(listOfFiles[i]));
+                    build.append(listOfFiles[i].getName());
+                    build.append(getTime(listOfFiles[i]));
+                    build.append(fromBytes(listOfFiles[i]));
+                    build.append(" ");
                 }
             }
         } else {
             for (File file1 : listOfFiles) {
-                if (humanReadable == false) {
-                    list.add(file1.getName());
-                    list.add(file1.lastModified() + " ");
-                    list.add(file1.length() + " Bytes");
+                if (!humanReadable) {
+                    build.append(file1.getName());
+                    build.append(file1.lastModified()).append(" ");
+                    build.append(file1.length()).append(" Bytes");
+                    build.append(" ");
                 } else {
-                    list.add(file1.getName());
-                    list.add(getTime(file1));
-                    list.add(fromBytes(file1));
+                    build.append(file1.getName());
+                    build.append(getTime(file1));
+                    build.append(fromBytes(file1));
+                    build.append(" ");
                 }
             }
         }
 
 
-        return list;
+        return build;
     }
 
 
@@ -116,19 +124,22 @@ public class LS {
         return Str.format(file.lastModified());
     }
 
-    private ArrayList<String> fileList(String inputFile) {
+    private StringBuilder fileList(String inputFile) {
         File file = new File(inputFile);
-        ArrayList<String> list = new ArrayList<String>();
-        if (humanReadable == false) {
-            list.add(file.getName());
-            list.add(file.lastModified() + " ");
-            list.add(file.length() + " Bytes");
+        //ArrayList<String> list = new ArrayList<String>();
+        StringBuilder builder = new StringBuilder();
+        if (!humanReadable) {
+            builder.append(file.getName());
+            builder.append(file.lastModified()).append(" ");
+            builder.append(file.length()).append(" Bytes");
+            builder.append(" ");
         } else {
-            list.add(file.getName());
-            list.add(getTime(file));
-            list.add(fromBytes(file));
+            builder.append(file.getName());
+            builder.append(getTime(file));
+            builder.append(fromBytes(file));
+            builder.append(" ");
         }
-        return list;
+        return builder;
     }
 
     String fromBytes(File file) {
@@ -147,21 +158,26 @@ public class LS {
     }
 
 
-    private void write(ArrayList<String> list, String outputFile) {
+    private void write(StringBuilder list, String outputFile) {
         try {
             PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(outputFile)));
             if (!reverse) {
-                for (String line : list) {
+                String l = list.toString();
+                writer.write(l);
+                /*for (String line : list) {
                     writer.write(line + "\n");
-                }
+                }*/
                 writer.flush();
                 writer.close();
 
             } else {
-                Collections.reverse(list);
-                for (String line : list) {
+                list.reverse();
+                //Collections.reverse(list);
+                /*for (String line : list) {
                     writer.write(line + "\n");
-                }
+                }*/
+                String l = list.toString();
+                writer.write(l + "\n");
                 writer.flush();
                 writer.close();
             }

@@ -38,7 +38,7 @@ public class LsCommands {
         }
         try {
             LS is = new LS(longFormat, humanReadable, reverse);
-            is.OutputInfo(inputFile, outputFile);
+            is.outputInfo(inputFile, outputFile);
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }

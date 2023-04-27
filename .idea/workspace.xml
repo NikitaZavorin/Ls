@@ -4,20 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f6998d7a-206e-415d-9749-69dd2010e5e9" name="Changes" comment="commit">
+    <list default="true" id="f6998d7a-206e-415d-9749-69dd2010e5e9" name="Changes" comment="add beter tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/LS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/LS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/LsCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/LsCommands.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/resources/output/Empty.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/output/Empty.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/testActual/test1Actual.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testActual/test1Actual.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/testActual/test2Actual.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testActual/test2Actual.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/testActual/test3Actual.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testActual/test3Actual.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/testActual/test4Actual.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testActual/test4Actual.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/testActual/test5Actual.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testActual/test5Actual.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/testExpected/test1Expected.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testExpected/test1Expected.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/testExpected/test2Expected.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testExpected/test2Expected.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/testExpected/test3Expected.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testExpected/test3Expected.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/testExpected/test4Expected.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testExpected/test4Expected.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/testExpected/test5Expected.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testExpected/test5Expected.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +56,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/zavor/IdeaProjects/SecondClass",
+    "last_opened_file_path": "C:/Users/zavor/IdeaProjects/KotlinAsFirst-2022",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2"
@@ -84,11 +76,11 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.Test">
+  <component name="RunManager" selected="Gradle.Test.test1">
     <configuration name="LsCommands" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="LsCommands" />
       <module name="TT.main" />
-      <option name="PROGRAM_PARAMETERS" value="-l -h -r   .\\src\\test\\resources\\input" />
+      <option name="PROGRAM_PARAMETERS" value="-l -h .\\src\\test\\resources\\input" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -107,6 +99,29 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;Test&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="Test.test1" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;Test.test1&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -210,9 +225,10 @@
     </configuration>
     <list>
       <item itemvalue="Application.LsCommands" />
+      <item itemvalue="Gradle.Test.test1" />
+      <item itemvalue="Gradle.Test.testLong_Human" />
       <item itemvalue="Gradle.Test.testLHuman" />
       <item itemvalue="Gradle.Test.testLHuman_Revers" />
-      <item itemvalue="Gradle.Test.testLong_Human" />
       <item itemvalue="Gradle.Test" />
       <item itemvalue="Gradle.Test.testLong" />
     </list>
@@ -242,7 +258,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681456866005</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add beter tests">
+      <created>1681461042739</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1681461042739</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -258,6 +281,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit" />
+    <MESSAGE value="add beter tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="add beter tests" />
   </component>
 </project>

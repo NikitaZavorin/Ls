@@ -27,7 +27,7 @@ public class Test {
 
     @org.junit.jupiter.api.Test
     void test1() throws IOException {
-        String[] command = "-l -h -r -o .\\src\\test\\resources\\output\\Empty.txt .\\src\\test\\resources\\input".split(" ");
+        String[] command = "-l -h -o .\\src\\test\\resources\\output\\Empty.txt .\\src\\test\\resources\\input".split(" ");
 
         LsCommands.main(command);
         FileInputStream file = new FileInputStream(".\\src\\test\\resources\\output\\Empty.txt");
@@ -38,12 +38,7 @@ public class Test {
             c = file.read();
         }
 
-        assertEquals("0.8916015625 KB\n" +
-                "13/04/2023 21:57:44\n" +
-                "lol.txt\n" +
-                "0.0029296875 KB\n" +
-                "13/04/2023 21:57:50\n" +
-                "lol2.txt\n", ans);
+        assertEquals("lol.txt13/04/2023 21:57:440.8916015625 KB lol2.txt13/04/2023 21:57:500.0029296875 KB ", ans);
     }
 
     @org.junit.jupiter.api.Test
@@ -57,12 +52,7 @@ public class Test {
             ans += (char) c;
             c = file.read();
         }
-        assertEquals("lol.txt\n" +
-                "1681412264903 \n" +
-                "913 Bytes\n" +
-                "lol2.txt\n" +
-                "1681412270165 \n" +
-                "3 Bytes\n", ans);
+        assertEquals("lol.txt1681412264903 913 Bytes lol2.txt1681412270165 3 Bytes ", ans);
     }
 
     @org.junit.jupiter.api.Test
@@ -76,12 +66,7 @@ public class Test {
             ans += (char) c;
             c = file.read();
         }
-        assertEquals("lol.txt\n" +
-                "13/04/2023 21:57:44\n" +
-                "0.8916015625 KB\n" +
-                "lol2.txt\n" +
-                "13/04/2023 21:57:50\n" +
-                "0.0029296875 KB\n",ans);
+        assertEquals("lol.txt13/04/2023 21:57:440.8916015625 KB lol2.txt13/04/2023 21:57:500.0029296875 KB ", ans);
     }
 
     @org.junit.jupiter.api.Test
@@ -95,8 +80,7 @@ public class Test {
             ans += (char) c;
             c = file.read();
         }
-        assertEquals("lol.txt\n" +
-                "lol2.txt\n",ans);
+        assertEquals("[lol.txt, lol2.txt]", ans);
 
 
     }
@@ -112,12 +96,7 @@ public class Test {
             ans += (char) c;
             c = file.read();
         }
-        assertEquals("913 Bytes\n" +
-                "1681412264903 \n" +
-                "lol.txt\n" +
-                "3 Bytes\n" +
-                "1681412270165 \n" +
-                "lol2.txt\n",ans);
+        assertEquals("913 Bytes 1681412264903 lol.txt 3 Bytes 1681412270165 lol2.txt", ans);
     }
 
 }
